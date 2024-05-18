@@ -10,11 +10,15 @@ import NotificationsOutlinedIcon from '@mui/icons-material/NotificationsOutlined
 import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
 import PersonOutlinedIcon from '@mui/icons-material/PersonOutlined';
 import LoginOutlinedIcon from '@mui/icons-material/LoginOutlined';
+import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
 import SearchIcon from '@mui/icons-material/Search';
+import { useUser } from '../../UserContext';
 
 
 const Navbar = () => {
   const theme = useTheme();
+  const {user} = useUser();
+  const colors = tokens(theme.palette.mode)
   const colorMode = useContext(ColorModeContext);
   const navigate = useNavigate();
 
@@ -35,6 +39,17 @@ const Navbar = () => {
                 BlogBreeze
               </Typography>
       </Box>
+      {user && <Box
+        display="flex"
+        borderRadius="3px"
+        width="300px"
+        border="1px solid"
+      >
+        <InputBase sx={{ ml: 2, flex: 1 }} placeholder="Search a Blogger" fullWidth/>
+        <IconButton type="button" sx={{ p: 1 }}>
+          <SearchIcon />
+        </IconButton>
+      </Box>}
       <Box display="flex">
         <Box>
         </Box>
@@ -49,9 +64,12 @@ const Navbar = () => {
         {/* <IconButton>
           <PersonOutlinedIcon/>
         </IconButton> */}
-        <IconButton onClick={handleLogin}>
+        {!user && <IconButton onClick={handleLogin}>
           <LoginOutlinedIcon/>
-        </IconButton>
+        </IconButton>}
+        {user && <IconButton onClick={handleLogin}>
+          <LogoutOutlinedIcon/>
+        </IconButton>}
         {/* <IconButton>
           <SettingsOutlinedIcon/>
         </IconButton> */}

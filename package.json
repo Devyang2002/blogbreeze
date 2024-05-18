@@ -1,6 +1,6 @@
 {
-  "name": "blogbreeze",
   "homepage": "https://Devyang2002.github.io/blogbreeze",
+  "name": "blogbreeze",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
